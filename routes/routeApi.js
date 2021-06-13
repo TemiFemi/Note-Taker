@@ -1,6 +1,7 @@
 const Router = require("express").Router();
 const path = require("path");
 const fs = require("fs");
+// loads uuid module
 const { v4: uuidv4 } = require("uuid");
 // This route reads the db.json file and returns all saved notes as JSON.
 Router.get("/api/notes", function (req, res) {
@@ -50,8 +51,8 @@ Router.post("/api/notes", function (req, res) {
     });
 });
 // This route receives a query parameter containing the id of a note to delete.
-// Then the splice method removes the note data from the array in the db.json file
-// The notes are then rewritten to the `db.json` file.
+// splice method removes the note data from the array in the db.json file
+//  notes are then written to the `db.json` file.
 Router.delete("/api/notes/:id", function (req, res) {
     // note.id.length = 0;
     fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
